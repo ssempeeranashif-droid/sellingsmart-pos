@@ -1,0 +1,268 @@
+body.recovery-page {
+    min-height: 100vh;
+    display: flex;
+    font-family: "Montserrat", Arial, sans-serif;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(8, 120, 249, 0.09),
+            transparent 35%
+        ),
+        linear-gradient(135deg, #f7faff, #edf4ff);
+}
+
+.recovery-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 40px 38px 28px;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid #e0eaf8;
+    border-radius: 16px;
+    box-shadow: 0 18px 55px rgba(21, 62, 115, 0.10);
+    animation: recovery-appear 0.35s ease-out;
+}
+
+.recovery-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.recovery-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0878f9, #073477);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 14px rgba(8, 120, 249, 0.20);
+}
+
+.recovery-brand-name {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+.recovery-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 23px;
+    border-radius: 50%;
+    background: #edf5ff;
+    color: var(--primary-blue);
+    border: 1px solid #dceaff;
+}
+
+.recovery-card h1 {
+    margin-bottom: 12px;
+    color: var(--text-dark);
+    font-size: 29px;
+    line-height: 1.25;
+    letter-spacing: -0.7px;
+}
+
+.recovery-description {
+    max-width: 340px;
+    margin: 0 auto 30px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.recovery-card .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.recovery-card .form-group label {
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.recovery-card .form-group input {
+    min-height: 50px;
+    background: #fbfdff;
+}
+
+.recovery-card .form-group input:focus {
+    background: #ffffff;
+}
+
+.password-message {
+    display: none;
+    margin: -3px 0 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.password-message:not(:empty) {
+    display: block;
+}
+
+.password-error {
+    color: #d92d20;
+}
+
+.password-success {
+    color: #16803d;
+}
+
+.recovery-card .login-button {
+    width: 100%;
+    margin-top: 2px;
+}
+
+.back-to-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 25px;
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-to-login:hover {
+    color: var(--dark-blue);
+    text-decoration: underline;
+}
+
+.recovery-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+@keyframes recovery-appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    body.recovery-page {
+        padding: 20px 15px;
+    }
+
+    .recovery-card {
+        padding: 32px 23px 24px;
+        border-radius: 13px;
+    }
+
+    .recovery-brand {
+        margin-bottom: 25px;
+    }
+
+    .recovery-brand-name {
+        font-size: 19px;
+    }
+
+    .recovery-icon {
+        width: 68px;
+        height: 68px;
+        margin-bottom: 20px;
+    }
+
+    .recovery-card h1 {
+        font-size: 26px;
+    }
+
+    .recovery-description {
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .recovery-card {
+        animation: none;
+    }
+}
+
+
+.password-requirements {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #667085;
+}
+
+.password-requirements p {
+    margin: 6px 0;
+}
+
+.password-requirements ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+}
+
+.password-requirements li {
+    margin: 5px 0;
+}
+
+.password-requirements li::before {
+    content: "○ ";
+    color: #98a2b3;
+    font-weight: bold;
+}
+
+.password-requirements li.valid {
+    color: #16803d;
+}
+
+.password-requirements li.valid::before {
+    content: "✓ ";
+    color: #16803d;
+}
+
+.password-strength-track {
+    height: 6px;
+    width: 100%;
+    background: #e4e7ec;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#reset-password-strength-bar {
+    width: 0;
+    height: 100%;
+    background: #d92d20;
+    transition: width 0.25s ease, background 0.25s ease;
+}
+
+#reset-password-strength-text {
+    font-weight: 600;
+    margin-top: 6px;
+}

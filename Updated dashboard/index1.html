@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style1.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"
+    >
+</head>
+
+<body>
+
+<div class="dashboard_body">
+
+    <header class="upper_dashboard">
+
+        <div class="dashboard_title">
+            <h2>POS SYSTEM</h2>
+        </div>
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#75FB4C">
+
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </span>
+
+            <input
+                type="text"
+                placeholder="Search features..."
+                id="search-input"
+            >
+
+        </div>
+
+        <div class="dash_right">
+
+            <button class="new-order-btn" id="new-order-btn">
+                + New Orders
+            </button>
+            
+            
+            <button
+                type="button"
+                id="dark-mode-toggle"
+                class="dark-mode-toggle"
+                aria-label="Switch to dark mode"
+                title="Switch to dark mode"
+            >
+                <svg
+                    id="dark-mode-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+                </svg>
+            </button>
+
+
+            <button
+                type="button"
+                class="notification"
+                id="notification-button"
+                aria-label="Open notifications"
+                aria-haspopup="dialog"
+                aria-controls="notification-modal"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="30px"
+                    viewBox="0 -960 960 960"
+                    width="30px"
+                    fill="#efefef"
+                    aria-hidden="true"
+                >
+                    <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
+                </svg>
+
+                <span
+                    class="notification-badge"
+                    id="notification-badge"
+                    hidden
+                >0</span>
+            </button>
+
+
+            <div class="top-profile">
+
+                <div class="profile-picture-container">
+
+                    <img
+                        src="images/nashifu.jpg"
+                        alt="Profile picture"
+                        id="header-profile-picture"
+                    >
+
+                    <button
+                        type="button"
+                        id="edit-profile-picture"
+                        aria-label="Change profile picture"
+                        title="Change profile picture"
+                    >
+                        <i class="fas fa-camera"></i>
+                    </button>
+
+                    <input
+                        type="file"
+                        id="profile-picture-upload"
+                        accept="image/png, image/jpeg, image/webp"
+                        hidden
+                    >
+
+                </div>
+
+                
+                <div class="profile-user-details">
+                    <strong id="logged-in-user-name">Loading...</strong>
+                    <span id="logged-in-user-role">Loading...</span>
+                </div>
+                
+                <!-- Profile dropdown menu -->
+                <div class="profile-dropdown" id="profile-dropdown" hidden>
+
+                    <button
+                        type="button"
+                        id="profile-logout-button"
+                        class="profile-logout-button"
+                    >
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span>
+                    </button>
+
+                    <p
+                        id="profile-logout-message"
+                        class="profile-logout-message"
+                        aria-live="polite"
+                    ></p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="dashboard_layout">
+
+        <aside class="sidebar">
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="#" class="nav-item active" data-page="dashboard">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Z"/>
+                            </svg>
+
+                            <span>Dashboard</span>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-item" data-page="products">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M120-40v-880h80v80h560v-80h80v880h-80v-80H200v80H120Zm80-480h80v-160h240v160h240v-240H200v240Zm0 320h240v-160h240v160h80v-240H200v240Zm160-320h80v-80h-80v80Zm160 320h80v-80h-80v80Z"/>
+                            </svg>
+
+                            <span>Products</span>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-item" data-page="sales">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M120-120v-80h80v-520h-80v-80h80v-80h80v80h400v-80h80v80h80v80h-80v520h80v80H120Zm160-160h400v-280H280v280Zm0-360h400v-80H280v80Z"/>
+                            </svg>
+
+                            <span>Sales</span>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-item" data-page="orders">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Z"/>
+                            </svg>
+
+                            <span>Orders</span>
+
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" class="nav-item" data-page="inventory">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M120-40v-880h80v80h560v-80h80v880h-80v-80H200v80H120Zm80-480h80v-160h240v160h240v-240H200v240Zm0 320h240v-160h240v160h80v-240H200v240Z"/>
+                            </svg>
+
+                            <span>Inventory</span>
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-item" data-page="reports">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M280-280h80v-200h-80v200Zm320 0h80v-400h-80v400Zm-160 0h80v-120h-80v120Zm0-200h80v-80h-80v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Z"/>
+                            </svg>
+
+                            <span>Reports</span>
+
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" class="nav-item" data-page="settings">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Z"/>
+                            </svg>
+
+                            <span>Settings</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-item" data-page="user-management">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px" 
+                                viewBox="0 -960 960 960" 
+                                width="24px" fill="#D9D9D9">
+                                <path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm466 0q-47 47-113 47-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113q0 66-47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm296.5-343.5Q440-607 440-640t-23.5-56.5Q393-720 360-720t-56.5 23.5Q280-673 280-640t23.5 56.5Q327-560 360-560t56.5-23.5ZM360-240Zm0-400Z"/>
+                            </svg>
+                            
+                            <span>User Management</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="nav-item" data-page="help">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 -960 960 960"
+                                width="24px"
+                                fill="#efefef">
+
+                                <path d="M442-120h76v-74h-76v74Zm38-760q-83 0-142 41t-86 105l68 28q17-39 57-66t103-27q57 0 91 29t34 72q0 31-19 54t-58 52q-45 32-67 63t-22 89h76q0-35 17-57t61-59q49-37 69-72t20-79q0-76-58-122t-144-46Z"/>
+                            </svg>
+
+                            <span>Help</span>
+
+                        </a>
+                    </li>
+                    
+
+                </ul>
+
+            </nav>
+
+
+            <div class="profile">
+
+
+            </div>
+
+        </aside>
+
+        <main class="content-display" id="content-display">
+
+            <section class="dashboard-content">
+
+                <div class="welcome">
+
+                    <h1>Good morning, Admin</h1>
+
+                    <p>
+                        Here's what's happening today.
+                    </p>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span>Today's Sales</span>
+                        <strong>$0.00</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Weekly Sales</span>
+                        <strong>$0.00</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Monthly Sales</span>
+                        <strong>$0.00</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Transactions</span>
+                        <strong>0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Total Products</span>
+                        <strong id="total-products-count">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Low Stock</span>
+                        <strong>0</strong>
+                    </div>
+
+                </div>
+
+                <div class="charts-grid">
+
+                <div class="chart-card sales-chart">
+
+                    <div class="card-header">
+                        <h3>Sales Trend</h3>
+                        <span>Last 7 days</span>
+                    </div>
+
+                    <div class="dashboard-chart-container">
+                        <canvas id="dashboard-sales-chart"></canvas>
+                    </div>
+
+                </div>
+
+                <div class="chart-card payment-chart">
+
+                    <div class="card-header">
+                        <h3>Payment Methods</h3>
+                        <span>This month</span>
+                    </div>
+
+                    <div class="payment-chart-container">
+                        <canvas id="payment-methods-chart"></canvas>
+                    </div>
+
+                </div>
+
+                </div>
+
+                <div class="products-card">
+
+                    <div class="card-header">
+
+                        <h3>Best-Selling Products</h3>
+
+                        <a href="#">
+                            View all
+                        </a>
+
+                    </div>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Sold</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="best-selling-products">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+<script src="dark-mode.js"></script>
+
+</body>
+</html>

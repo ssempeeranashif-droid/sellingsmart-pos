@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Berkshire+Swash&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #0878f9;
+    --dark-blue: #073477;
+    --navy: #062657;
+    --text-dark: #142b4f;
+    --text-muted: #7185a3;
+    --border-color: #d6e3f5;
+    --white: #ffffff;
+}
+
+body {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: var(--text-dark);
+    background: #00403C;
+}
+
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+.welcome-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 45px 7%;
+    color: var(--white);
+    background: #00403C;
+    overflow: hidden;
+}
+
+.welcome-panel::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    top: -200px;
+    right: -180px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.brand-icon {
+    font-size: 35px;
+}
+
+.tagline {
+    margin: 12px 0 0 48px;
+    color: #c6dcff;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.tagline span {
+    margin: 0 8px;
+    color: #70b4ff;
+}
+
+.welcome-content {
+    position: relative;
+    margin-top: 65px;
+}
+
+.welcome-content h1 {
+    font-size: clamp(30px, 3vw, 43px);
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.welcome-content h1 span {
+    color: #64aaff;
+}
+
+.description {
+    max-width: 460px;
+    color: #d5e5ff;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.features {
+    display: grid;
+    gap: 25px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(53, 139, 255, 0.35);
+    color: var(--white);
+    font-size: 25px;
+}
+
+.feature h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.feature p {
+    color: #c6dcff;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.left-footer {
+    margin-top: auto;
+    padding-top: 35px;
+    color: #adc8ed;
+    font-size: 12px;
+}
+
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px 8%;
+
+    background:
+        linear-gradient(
+            rgba(245, 247, 247, 0.30),
+            rgba(245, 247, 247, 0.30)
+        ),
+        url("vendrex-pos-background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.login-card {
+    width: 100%;
+    max-width: 470px;
+    padding: 45px 38px 30px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 1px solid #e0eaf8;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(21, 62, 115, 0.08);
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: var(--white);
+    font-size: 30px;
+}
+
+.login-card h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    min-height: 49px;
+    padding: 14px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    outline: none;
+    background: #fff;
+    color: var(--text-dark);
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #91a2bb;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(8, 120, 249, 0.12);
+}
+
+.login-button {
+    width: 100%;
+    min-height: 51px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: none;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #0878f9, #1874ec);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.login-button:hover {
+    background: #0564d5;
+}
+
+.login-button:active {
+    transform: scale(0.99);
+}
+
+.forgot-link {
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--primary-blue);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.card-footer {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+@media (max-width: 900px) {
+    .login-page {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-panel {
+        padding: 30px 7%;
+    }
+
+    .welcome-content {
+        margin-top: 40px;
+    }
+
+    .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .left-footer {
+        margin-top: 35px;
+    }
+
+    .form-panel {
+        padding: 45px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-panel {
+        padding: 28px 22px;
+    }
+
+    .brand {
+        font-size: 24px;
+    }
+
+    .tagline {
+        margin-left: 43px;
+        font-size: 12px;
+    }
+
+    .welcome-content {
+        margin-top: 35px;
+    }
+
+    .welcome-content h1 {
+        font-size: 29px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .login-card {
+        padding: 32px 22px 25px;
+    }
+
+    .login-card h2 {
+        font-size: 26px;
+    }
+}
+
+    </style>
+    <main class="login-page">
+        <section class="welcome-panel">
+            <a href="#" class="brand">
+                <span class="brand-icon">🛒</span>
+                <span>POS System</span>
+            </a>
+
+            <p class="tagline">Fast <span>•</span> Secure <span>•</span> Reliable</p>
+
+            <div class="welcome-content">
+                <h1>Simplify Your Business
+                    <br>with Our <span>POS System</span>
+                </h1>
+
+                <p class="description">
+                    Manage sales, inventory, and customers all in one
+                    place. Fast, secure and easy to use.
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">↗</div>
+                        <div>
+                            <h3>Track Sales</h3>
+                            <p>Real-time sales and performance reports</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">□</div>
+                        <div>
+                            <h3>Manage Inventory</h3>
+                            <p>Keep your stock under control</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">♙</div>
+                        <div>
+                            <h3>Multiple Users</h3>
+                            <p>Role-based access for your team</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <h3>Secure & Reliable</h3>
+                            <p>Your data is always protected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="left-footer">
+                Manage your business with confidence.
+            </div>
+        </section>
+
+        <section class="form-panel">
+            <div class="login-card">
+
+                <div id="login-section">
+
+                    <div class="login-logo">🛒</div>
+
+                    <h2>Welcome Back</h2>
+                    <p class="subtitle">Sign in to your POS system account</p>
+
+                    <form action="#" method="post" id="login-form">
+
+                        <div class="form-group">
+                            <label for="username">Username or Email</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username or email"
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="login-button">
+                            Login <span>→</span>
+                        </button>
+
+                    </form>
+
+                    <a href="#" class="forgot-link" id="show-reset">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+                <div id="reset-section" hidden>
+
+                    <!-- Step A: Request a password-reset email -->
+                    <div id="reset-request-section">
+
+                        <div class="login-logo">🔒</div>
+
+                        <h2>Forgot Password?</h2>
+
+                        <p class="subtitle">
+                            Enter your registered email address and we'll send you a link to reset your password.
+                        </p>
+
+                        <form id="reset-request-form">
+
+                            <div class="form-group">
+                                <label for="reset-email">Email Address</label>
+
+                                <input
+                                    type="email"
+                                    id="reset-email"
+                                    name="email"
+                                    placeholder="Enter your registered email"
+                                    autocomplete="email"
+                                    required
+                                >
+                            </div>
+
+                            <p id="reset-request-message" role="status" aria-live="polite"></p>
+
+                            <button type="submit" class="login-button">
+                                Send Reset Link <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <a href="#" class="forgot-link" id="back-to-login">
+                            ← Back to Login
+                        </a>
+
+                    </div>
+
+                    <!-- Step B: Set a new password after opening a reset link -->
+                    <div id="reset-complete-section" hidden>
+
+                        <div class="login-logo">🔐</div>
+
+                        <h2>Create New Password</h2>
+
+                        <p class="subtitle">
+                            Choose a secure password for your account.
+                        </p>
+
+                        <form id="reset-password-form">
+
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+
+                                <input
+                                    type="password"
+                                    id="new-password"
+                                    name="newPassword"
+                                    placeholder="Enter new password"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    required
+                                >
+                                <div class="password-requirements" id="reset-password-requirements">
+                                    <p>Password requirements:</p>
+
+                                    <ul>
+                                        <li id="reset-req-length">At least 8 characters</li>
+                                        <li id="reset-req-upper">One uppercase letter (A–Z)</li>
+                                        <li id="reset-req-lower">One lowercase letter (a–z)</li>
+                                        <li id="reset-req-number">One number (0–9)</li>
+                                        <li id="reset-req-special">One special character (!@#$%)</li>
+                                    </ul>
+
+                                    <div class="password-strength-track">
+                                        <div id="reset-password-strength-bar"></div>
+                                    </div>
+
+                                    <p id="reset-password-strength-text">Password strength: Not entered</p>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+
+                                <input
+                                    type="password"
+                                    id="confirm-password"
+                                    name="confirmPassword"
+                                    placeholder="Confirm new password"
+                                    minlength="8"
+                                    autocomplete="new-password"
+                                    required
+                                >
+                            </div>
+
+                            <p id="password-message" role="status" aria-live="polite"></p>
+
+                            <button type="submit" class="login-button">
+                                Reset Password <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <a href="#" class="forgot-link" id="back-to-login-after-reset">
+                            ← Back to Login
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <p class="card-footer">
+                    &copy; 2026 POS System. All rights reserved.
+                </p>
+
+            </div>
+        </section>
+
+
+    </main>
+    <script src="login.js"></script>
+</body>
+</html>
