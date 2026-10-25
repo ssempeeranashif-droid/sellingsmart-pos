@@ -1,4 +1,3 @@
-
 require("dotenv").config();
 
 const mysql = require("mysql2");
@@ -9,6 +8,11 @@ const pool = mysql.createPool({
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "project_2_dashboard",
+
+    ssl: process.env.DB_HOST
+        ? { rejectUnauthorized: true }
+        : undefined,
+
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -26,7 +30,10 @@ pool.getConnection((error, connection) => {
         "SELECT DATABASE() AS databaseName",
         (queryError, results) => {
             if (queryError) {
-                console.error("Database query failed:", queryError.message);
+                console.error(
+                    "Database query failed:",
+                    queryError.message
+                );
             } else {
                 console.log(
                     "Connected database:",
