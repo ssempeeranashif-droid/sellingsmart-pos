@@ -8,15 +8,17 @@ const pool = mysql.createPool({
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "project_2_dashboard",
-
-    ssl: process.env.DB_HOST
-        ? { rejectUnauthorized: true }
-        : undefined,
-
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    ssl: process.env.DB_CA
+    ? {
+        ca: process.env.DB_CA.replace(/\\n/g, "\n"),
+        rejectUnauthorized:true
+      }
+    : undefined
 });
+
 
 pool.getConnection((error, connection) => {
     if (error) {
