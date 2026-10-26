@@ -1221,7 +1221,7 @@ app.get(
 
 
 const loginFolder = path.join(__dirname, "..", "POS login");
-const dashboardFolder = path.join(__dirname, "Updated Dashboard");
+const dashboardFolder = path.join(__dirname, "Updated dashboard");
 
 app.use(express.static(loginFolder));
 
