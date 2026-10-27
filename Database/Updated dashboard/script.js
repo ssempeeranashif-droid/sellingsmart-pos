@@ -3450,12 +3450,22 @@ else if (page === "products") {
                         <div class="form-group">
                             <label for="product-category">Category</label>
 
-                            <select id="product-category" required>
-                                <option value="">Select category</option>
-                                <option value="Clothing">Clothing</option>
-                                <option value="Shoes">Shoes</option>
-                                <option value="Accessories">Accessories</option>
-                            </select>
+                                                    
+                        <input
+                            type="text"
+                            id="product-category"
+                            list="product-category-options"
+                            placeholder="Select or type a category"
+                            required
+                            autocomplete="off"
+                        >
+
+                        <datalist id="product-category-options">
+                            <option value="Clothing">
+                            <option value="Shoes">
+                            <option value="Accessories">
+                        </datalist>
+
                         </div>
 
                         <div class="form-row">
