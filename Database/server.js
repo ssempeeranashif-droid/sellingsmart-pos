@@ -1538,22 +1538,22 @@ app.post("/api/password-reset/request", async (req, res) => {
         try {
             await mailTransporter.sendMail({
                 from: {
-                    name: "Vendrex",
-                    address: process.env.SMTP_USER
+                    name: "sellingsmart",
+                    address: process.env.MAIL_FROM || process.env.SMTP_USER
                 },
                 to: user.email,
-                subject: "Reset your Vendrex password",
+                subject: "Reset your sellingsmart password",
                 text:
                     `Hello ${user.full_name},\n\n` +
-                    "We received a request to reset your Vendrex password.\n\n" +
+                    "We received a request to reset your sellingsmart password.\n\n" +
                     `Open this link to choose a new password:\n${resetLink}\n\n` +
                     "This link expires in 20 minutes and can only be used once.\n" +
                     "If you did not request this, you can ignore this email.",
                 html: `
                     <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:24px;color:#263238;">
-                        <h2 style="color:#087f8c;">Vendrex Password Reset</h2>
+                        <h2 style="color:#087f8c;">sellingsmart Password Reset</h2>
                         <p>Hello,</p>
-                        <p>We received a request to reset your Vendrex password.</p>
+                        <p>We received a request to reset your sellingsmart password.</p>
                         <p>
                             <a href="${resetLink}"
                                style="display:inline-block;background:#087f8c;color:#ffffff;padding:12px 20px;text-decoration:none;border-radius:6px;">
@@ -1562,7 +1562,7 @@ app.post("/api/password-reset/request", async (req, res) => {
                         </p>
                         <p>This link expires in <strong>20 minutes</strong> and can only be used once.</p>
                         <p>If you did not request a password reset, you can ignore this email.</p>
-                        <p style="color:#667085;font-size:12px;">Vendrex POS</p>
+                        <p style="color:#667085;font-size:12px;">sellingsmart POS</p>
                     </div>
                 `
             });
@@ -2401,7 +2401,7 @@ app.patch("/api/notifications/read-all", requireLogin, async (req, res) => {
 
 const server = app.listen(PORT, () => {
     console.log("EXPRESS SERVER IS RUNNING");
-    console.log(`Vendrex POS server running at http://localhost:${PORT}`);
+    console.log(`sellingsmart POS server running at http://localhost:${PORT}`);
 });
 
 
