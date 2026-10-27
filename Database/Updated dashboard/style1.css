@@ -794,7 +794,7 @@ td {
     }
 
     .top-profile div {
-        display: none;
+        display: flex;
     }
 
     .dashboard_layout {
@@ -831,7 +831,13 @@ td {
     }
 
     .new-order-btn {
-        display: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 8px 10px;
+        font-size: 12px;
     }
 
     .search-box {
@@ -1043,7 +1049,7 @@ td {
     }
 
     .top-profile div {
-        display: none;
+        display: flex;
     }
 
     .dashboard_layout {
@@ -1080,7 +1086,13 @@ td {
     }
 
     .new-order-btn {
-        display: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 8px 10px;
+        font-size: 12px;
     }
 
     .search-box {
